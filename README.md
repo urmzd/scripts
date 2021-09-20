@@ -8,7 +8,8 @@ A unix script which allows you to have access to your `timberlea` files on your 
 
 ## Usage
 
-1. `chmod +x ./create_local_mount.sh`
-2. `./create_local_mount.sh ${csid} ${csid_password}`
-3. `ssh timber`
-4. Access all of your `timberlea` files on `~/timber`
+1. `git clone https://github.com/urmzd/dal-timberlea-local-mount.git`
+2. `chmod +x ./create_local_mount.sh`
+3. `./create_local_mount.sh ${csid} ${csid_password}`
+4. `ssh timber`
+5. Access all of your `timberlea` files on `~/timber`
