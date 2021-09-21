@@ -80,5 +80,13 @@ mount_path="${HOME}/${ssh_host_name}"
 mkdir -p "${mount_path}" &&
 sshfs -o idmap=user "$user_path" "${mount_path}" &&
 
+# Destroy ssh connect on login to prevent loading issues
+if [[ -f ~/.zshrc ]]
+then
+  echo "pkill -f ssh" >> "./zshrc"
+else
+  echo "pkill -f ssh" >> "./bashrc"
+fi
+
 # Indicate completion.
 echo "DONE! Enjoy using SSH for everything timberlea :)"
