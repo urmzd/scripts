@@ -74,12 +74,17 @@ END
 # Append timberlea configuration to ssh_config file.
 echo "$ssh_config" >> ""$HOME"/.ssh/config" &&
 
-# Mount timberlea onto local.
+
+# Define paths.
 user_path="${csid}@${ssh_host_name}:/users/cs/${csid}" &&
 mount_path="${HOME}/${ssh_host_name}"
 
+# Mount timberlea onto local.
 mkdir -p "${mount_path}" &&
 sshfs -o idmap=user "$user_path" "${mount_path}" &&
+
+# Create a shortcut to execute commands on server.
+echo "\nalias timberlea='ssh timber'" >> "${HOME}/.${0}rc"
 
 # Indicate completion.
 echo "DONE! Enjoy using SSH for everything timberlea :)"
