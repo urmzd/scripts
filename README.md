@@ -14,6 +14,8 @@ A unix script which allows you to have access to your `timberlea` files on your 
 3. `./local_mount.sh ${csid} ${csid_password}`
 4. `ssh timber`
 5. Access all of your `timberlea` files on `~/timber`
+6. Access `timberlea` by typing `timberlea`.
+7. Send commands to `timberlea` (without going to `timberlea`) by using `timberlea ...commands`
 
 ## TODO
 
