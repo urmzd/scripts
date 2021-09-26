@@ -1,13 +1,15 @@
-# Local Mount Timberlea
+# Timberlea Utils
 
-A unix script which allows you to have access to your `timberlea` files on your local filesystem.
+A series of unix scripts to reduce the hassles that come with `timberlea`.
 
 ## Table of Contents:
 
-1. [Usage](#usage)
-2. [TODO](#todo)
+- [Local Mounting](#local-mounting)
+  - [Usage](#local-mounting#usage) 
+  - [TODO](#local-mounting#todo)
 
-## Usage
+## Local Mounting
+<h3 id="local-mounting#usage">Usage</h3>
 
 1. `git clone https://github.com/urmzd/local-mount-timberlea.git`
 2. `chmod +x ./local_mount.sh`
@@ -16,6 +18,6 @@ A unix script which allows you to have access to your `timberlea` files on your 
 5. Access `timberlea` by typing `timberlea`.
 6. Send commands to `timberlea` (without going to `timberlea`) by using `timberlea ...commands`
 
-## TODO
+<h3 id="local-mounting#todo">TODO</h3>
 
 - Remove `./anyconnect-linux64-4.8.03052-core-vpn-webdeploy-k9.sh` so users can specify their vpn.
