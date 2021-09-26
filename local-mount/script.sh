@@ -7,7 +7,7 @@
 if [[ ! -f /opt/cisco/anyconnect/bin/vpn ]] 
 then
   # Install VPN
-  sudo /bin/sh "./anyconnect-linux64-4.8.03052-core-vpn-webdeploy-k9.sh" &&
+  sudo /bin/sh "./anyconnect.sh" &&
 
   # Create symbolic link to $PATH
   sudo rm /usr/bin/anyconnect &&
