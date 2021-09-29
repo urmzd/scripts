@@ -86,5 +86,8 @@ sshfs -o idmap=user "$user_path" "${mount_path}" &&
 # Create a shortcut to execute commands on server.
 echo "\nalias timberlea='ssh timber'" >> "${HOME}/.${0}rc"
 
+# Remount when disconnected.
+echo "\nsshfs -o reconnect "$user_path" $mount_path" >> "${HOME}/.${0}rc" &&
+
 # Indicate completion.
 echo "DONE! Enjoy using SSH for everything timberlea :)"
