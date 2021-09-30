@@ -83,10 +83,12 @@ mkdir -p "${mount_path}" &&
 sshfs -o idmap=user "$user_path" "${mount_path}" &&
 
 # Create a shortcut to execute commands on server.
-echo "\nalias timberlea='ssh timber'" >> "${HOME}/.profile"
+echo "" >> "${HOME}/.profile"
+echo "alias timberlea='ssh timber'" >> "${HOME}/.profile"
 
 # Remount when disconnected.
-echo "\nsshfs -o reconnect "$user_path" $mount_path" >> "${HOME}/.profile" &&
+echo "" >> "${HOME}/.profile"
+echo "sshfs -o reconnect "$user_path" $mount_path" >> "${HOME}/.profile" &&
 
 # Indicate completion.
 echo "DONE! Enjoy using SSH for everything timberlea :)"
