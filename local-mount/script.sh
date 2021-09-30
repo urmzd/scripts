@@ -74,7 +74,6 @@ END
 # Append timberlea configuration to ssh_config file.
 echo "$ssh_config" >> ""$HOME"/.ssh/config" &&
 
-
 # Define paths.
 user_path="${csid}@${ssh_host_name}:/users/cs/${csid}" &&
 mount_path="${HOME}/${ssh_host_name}"
@@ -84,10 +83,10 @@ mkdir -p "${mount_path}" &&
 sshfs -o idmap=user "$user_path" "${mount_path}" &&
 
 # Create a shortcut to execute commands on server.
-echo "\nalias timberlea='ssh timber'" >> "${HOME}/.${0}rc"
+echo "\nalias timberlea='ssh timber'" >> "${HOME}/.profile"
 
 # Remount when disconnected.
-echo "\nsshfs -o reconnect "$user_path" $mount_path" >> "${HOME}/.${0}rc" &&
+echo "\nsshfs -o reconnect "$user_path" $mount_path" >> "${HOME}/.profile" &&
 
 # Indicate completion.
 echo "DONE! Enjoy using SSH for everything timberlea :)"
