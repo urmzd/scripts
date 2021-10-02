@@ -1,0 +1,18 @@
+# action.yml
+
+name: "Auto Submit"
+author: "Urmzd Mukhammadnaim"
+description: "Submit all files to the specified directory on Timberlea."
+inputs:
+  directory:
+    description: "The 'directory' to submit to."
+    required: true
+    default: "~/vlado/public/submit-nlp"
+outputs:
+  result:
+    description: "Outputs TRUE if submission passed all tests, FALSE otherwise"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.directory }}
