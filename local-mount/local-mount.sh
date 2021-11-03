@@ -87,8 +87,8 @@ echo "" >> "${HOME}/.profile"
 echo "alias timberlea='ssh timber'" >> "${HOME}/.profile"
 
 # Remount when disconnected.
-#echo "" >> "${HOME}/.profile"
-#echo "sshfs -o reconnect "$user_path" $mount_path" >> "${HOME}/.profile" &&
+echo "" >> "${HOME}/.profile"
+echo "sshfs -o reconnect,nonempty "$user_path" $mount_path" >> "${HOME}/.profile" &&
 
 # Indicate completion.
 echo "DONE! Enjoy using SSH for everything timberlea :)"
