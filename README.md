@@ -13,7 +13,7 @@ A series of `unix` scripts to reduce the hassles that come with `timberlea`.
 
 ```bash
 git clone https://github.com/urmzd/timberlea-utils.git
-./script.sh ${csid} ${csid_password}
+./local-mount/local-mount.sh ${csid} ${csid_password}
 # Access all of your `timberlea` files on `~/timber`
 # Access `timberlea` by typing `timberlea`.
 # Send commands to `timberlea` (without going to `timberlea`) by using `timberlea ...commands`
