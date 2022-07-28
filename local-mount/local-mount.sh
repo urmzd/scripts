@@ -12,26 +12,20 @@ then
   # Create symbolic link to $PATH
   sudo rm /usr/bin/anyconnect 
   sudo ln -s /opt/cisco/anyconnect/bin/vpn /usr/bin/anyconnect
-else
-  exit 1
 fi
 
 # Connect to VPN
-anyconnect connect vpn.its.dal.ca || exit 1
+anyconnect connect vpn.its.dal.ca || (echo "Failed to connect to VPN." && exit 1) 
 
 # Install SSH pass to automate password passing.
 if [[ ! -f /usr/bin/sshpass ]]
 then
   sudo apt-get install -q -y sshpass
-else
-  exit 1
 fi
 
 if [[ ! -f /usr/bin/sshfs ]]
 then
   sudo apt-get install -q -y sshfs
-else 
-  exit 1
 fi 
 
 # Check if CSID and password is provided.
@@ -40,12 +34,14 @@ password=$2
 
 if [[ -z "$csid" ]]
 then
-  echo "CSID is required!"  exit 1
+  echo "CSID is required!"
+  exit 1
 fi
 
 if [[ -z "$password" ]] 
 then
-  echo "Password is required!"  exit 1;
+  echo "Password is required!"
+  exit 1;
 fi
 
 export SSHPASS=${password}
@@ -63,7 +59,7 @@ ssh_path="${csid}@timberlea.cs.dal.ca"
 sshpass -e ssh-copy-id -i "${ssh_key_filename}.pub" "$ssh_path"
 
 # Execute command.
-sshpass -e ssh ${ssh_path} "chmod go-w ~  chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys" &&
+sshpass -e ssh ${ssh_path} "chmod go-w ~  chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
 
 # Create timberlea configuration to reduce host name.
 ssh_config=$(cat <<-END
