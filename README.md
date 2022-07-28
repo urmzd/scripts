@@ -6,8 +6,6 @@ A series of `unix` scripts to reduce the hassles that come with `timberlea`.
 
 - [Local Mounting](#local-mounting)
   - [Usage](#local-mounting#usage)
-- [Auto Submit](#auto-submit)
-  - [Usage](#auto-submit#usage)
 
 ## Local Mounting
 
@@ -20,7 +18,3 @@ A series of `unix` scripts to reduce the hassles that come with `timberlea`.
 5. Access all of your `timberlea` files on `~/timber`
 6. Access `timberlea` by typing `timberlea`.
 7. Send commands to `timberlea` (without going to `timberlea`) by using `timberlea ...commands`
-
-## Auto Submit
-
-<h3 id="auto-submit#usage">Usage</h3>
