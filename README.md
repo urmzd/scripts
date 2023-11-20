@@ -1,6 +1,7 @@
-# Timberlea Utils
+# SSH UTILS
 
-A series of `unix` scripts to reduce the hassles that come with `timberlea`.
+A collection of scripts to reduce
+
 
 ## Table of Contents:
 
