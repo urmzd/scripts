@@ -1,72 +1,66 @@
 #!/usr/bin/env bash
 # Author: Urmzd Mukhammadnaim
 # Date: 2023-09-19
+# Description: This script automates the creation of SSH keys and sets up SSH key-based 
+#              authentication for a specified user on a remote host.
+# Usage: ./set-up-ssh-server USER_NAME PASSWORD SSH_KEY_NAME SSH_HOST_NAME
 
-
-# Check if USER_NAME and PASSWORD is provided.
+# Checking and capturing command line arguments
 USER_NAME="$1"
 PASSWORD="$2"
 SSH_KEY_NAME="$3"
 SSH_HOST_NAME="$4"
 
-# VALIDATE ABOVE
-
-# Check if USER_NAME is provided.
-if [[ -z "$USER_NAME" ]]
-then
+# Validating the presence of required arguments
+if [[ -z "$USER_NAME" ]]; then
   echo "Please provide your USER_NAME as the first argument."
   exit 1
 fi
 
-# Check if PASSWORD is provided.
-if [[ -z "$PASSWORD" ]]
-then
+if [[ -z "$PASSWORD" ]]; then
   echo "Please provide your PASSWORD as the second argument."
   exit 1
 fi
 
-# Check if SSH_KEY_NAME is provided.
-if [[ -z "$SSH_KEY_NAME" ]]
-then
+if [[ -z "$SSH_KEY_NAME" ]]; then
   echo "Please provide your SSH_KEY_NAME as the third argument."
   exit 1
 fi
 
-# Check if SSH_HOST_NAME is provided.
-if [[ -z "$SSH_HOST_NAME" ]]
-then
+if [[ -z "$SSH_HOST_NAME" ]]; then
   echo "Please provide your SSH_HOST_NAME as the fourth argument."
   exit 1
 fi
 
+# Setting up the password for use with sshpass
 export SSHPASS="${PASSWORD}"
 
-# DEFINE PATHS
+# Constructing the SSH path
 SSH_PATH="${USER_NAME}@${SSH_HOST_NAME}"
 
-# Declare the file name of the SSH keys.
+# Declaring the file path for the SSH keys
 SSH_KEY_FILE_NAME="$HOME/.ssh/${SSH_KEY_NAME}"
 
-# Generate SSH key with no passphrase at home.
+# Generating the SSH key pair
 ssh-keygen -t "ed25519" -N "" -f "${SSH_KEY_FILE_NAME}"
 
-# Copy SSH key over to server.
+# Copying the SSH public key to the server's authorized keys
 sshpass -e ssh-copy-id -i "${SSH_KEY_FILE_NAME}.pub" "$SSH_PATH"
 
-# Execute command.
-sshpass -e ssh ${SSH_PATH} "chmod go-w ~ && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
+# Securing the SSH setup on the server
+sshpass -e ssh "${SSH_PATH}" "chmod go-w ~ && chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys"
 
-# Create timberlea configuration to reduce host name.
+# Creating an SSH client configuration snippet
 SSH_CONFIG=$(cat <<-END
 
 Host ${SSH_KEY_NAME}
   HostName ${SSH_HOST_NAME}
   User ${USER_NAME}
-  IdentityFile ${SSH_KEY_FILE_NAME} 
+  IdentityFile ${SSH_KEY_FILE_NAME}
   ServerAliveInterval 15
 
 END
 ) 
 
-# Append configuration to ssh_config file.
-echo "$SSH_CONFIG" >> ""$HOME"/.ssh/config" 
+# Appending the configuration to the user's SSH config file
+echo "$SSH_CONFIG" >> "${HOME}/.ssh/config"
